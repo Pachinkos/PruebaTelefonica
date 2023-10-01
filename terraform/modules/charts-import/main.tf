@@ -25,64 +25,64 @@
 
 
 resource "helm_release" "deployments" {
-    for_each = { for chart in var.charts: chart.chart_name => chart }
-    //for_each = var.charts
+  for_each = { for chart in var.charts : chart.chart_name => chart }
+  //for_each = var.charts
 
-    name = each.key
-    namespace = each.value.chart_namespace
+  name      = each.key
+  namespace = each.value.chart_namespace
 
-    //repository = "${helm_repository.instance-repositories[each.value.chart_name].repository}"
-    repository = each.value.chart_repository
-    chart = each.value.chart_name
-    version = each.value.chart_version
+  //repository = "${helm_repository.instance-repositories[each.value.chart_name].repository}"
+  repository = each.value.chart_repository
+  chart      = each.value.chart_name
+  version    = each.value.chart_version
 
-    //values = each.value.values
-    //sensitive_values = each.value.sensitive_values
-    
-    # dynamic "set_sensitive" {
-    #      for_each = { for sv in each.value.values : sv => sv }
-    #      content {
-    #          name = set.key
-    #          value = set.value
-    #      }
-    # }
+  //values = each.value.values
+  //sensitive_values = each.value.sensitive_values
 
-    # set_sensitive = [
-    #     for entry in each.value.sensitive_values : {
-    #         name  = entry.name
-    #         value = entry.value
-    #     }
-    # ]
+  # dynamic "set_sensitive" {
+  #      for_each = { for sv in each.value.values : sv => sv }
+  #      content {
+  #          name = set.key
+  #          value = set.value
+  #      }
+  # }
 
-    # dynamic "set" {
-    # for_each = { for v in each.value.values : v.name => v }
-    #     content {
-    #         name  = set.key
-    #         value = coalesce(v.value, v.listValue)
-    #     }
-    # }     
+  # set_sensitive = [
+  #     for entry in each.value.sensitive_values : {
+  #         name  = entry.name
+  #         value = entry.value
+  #     }
+  # ]
 
-    dynamic "set" {
-        for_each = { for v in each.value.values : v.name => v }
-        content {
-            name = set.key
-            value = set.value.value
-        }
+  # dynamic "set" {
+  # for_each = { for v in each.value.values : v.name => v }
+  #     content {
+  #         name  = set.key
+  #         value = coalesce(v.value, v.listValue)
+  #     }
+  # }     
+
+  dynamic "set" {
+    for_each = { for v in each.value.values : v.name => v }
+    content {
+      name  = set.key
+      value = set.value.value
     }
-
-    dynamic "set_sensitive" {
-        for_each = lookup({ for i, sv in each.value.sensitive_values : tostring(i) => sv }, "set_sensitive", [])
-        content {
-        name  = set_sensitive.value.name
-        value = set_sensitive.value.value
-        #type  = lookup(set_sensitive.value, "type", "auto")
-        }
   }
 
-    # values = [
-    #     for value in each.value.values : {
-    #         name  = value.name
-    #         value = value.value
-    #     }
-    # ]
+  dynamic "set_sensitive" {
+    for_each = lookup({ for i, sv in each.value.sensitive_values : tostring(i) => sv }, "set_sensitive", [])
+    content {
+      name  = set_sensitive.value.name
+      value = set_sensitive.value.value
+      #type  = lookup(set_sensitive.value, "type", "auto")
+    }
+  }
+
+  # values = [
+  #     for value in each.value.values : {
+  #         name  = value.name
+  #         value = value.value
+  #     }
+  # ]
 }
