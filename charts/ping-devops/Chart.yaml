@@ -1,0 +1,14 @@
+#######################################################################
+# Ping Identity DevOps Chart
+########################################################################
+apiVersion: v2
+name: ping-devops
+########################################################################
+# 0.9.19 - Refer to http://helm.pingidentity.com/release-notes/currentRelease
+########################################################################
+version: 0.9.19
+description: Ping Identity helm charts - 9/06/2023
+type: application
+home: https://helm.pingidentity.com/
+icon: https://helm.pingidentity.com/img/logos/ping.png
+appVersion: "2308"

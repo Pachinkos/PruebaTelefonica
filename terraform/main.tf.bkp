@@ -1,0 +1,22 @@
+ 
+# output "path_module" {	
+# 	value = "${path.module}"
+# }
+
+# provider "helm" {
+#   kubernetes {
+#     config_path = "~/.kube/config"
+#   }
+# }
+
+# resource "helm_release" "telefonica-ping" {
+# 	name = "telefonica-ping"
+# 	repository = "chartmuseum"
+# 	chart = "ping-devops"
+
+# 	namespace = "default"
+
+# 	values = [templatefile("/home/g/Documents/Prueba telefonica/code/ping-helm-charts/charts/ping-devops/values.yaml", {})]
+# 	#values = file("${path.module}/../charts/ping-devops/values.yaml")
+# 	#values = [templatefile("values.yaml")]
+# }
