@@ -19,7 +19,6 @@ groups.
 of the same type.
 • Pods are deployed across different availability zones.
 
-* * *
 
 ## Solución
 Se ha tomado como referencia una instalación básica con solo los deployments pingfederate-admin y pingfederate-engine como se indica en "https://helm.pingidentity.com/getting-started".
@@ -57,7 +56,6 @@ You can assume the caller will be authenticated in Azure with enough permissions
 to import Helm charts into the instance registry and will provide the module a
 configured helm provider.
 
-* * *
 
 ## Solución
 Requisitos solicitados implementados.
@@ -86,7 +84,6 @@ Create a Github workflow to allow installing helm chart from Challenge #1
 using module from Challenge #2, into an AKS cluster (considering a preexisting
 resource group and cluster name).
 
-* * *
 
 ## Solución
 Añadida github action para validar y desplegar el challenge 1 mediante el challenge 2.
