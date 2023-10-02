@@ -19,31 +19,11 @@ module "charts-import" {
       chart_repository = "chartmuseum"
       chart_version    = "0.9.19"
 
-      # values = [<<EOF
-      # 	pingfederate-engine:
-      # 		enabled: true
-
-      # 		container:
-      # 			replicaCount: 4
-
-      # 			affinity:
-      # 				nodeAffinity:
-      # 					requiredDuringSchedulingIgnoredDuringExecution:
-      # 						nodeSelectorTerms:
-      # 						- matchExpressions:
-      # 							- key: group
-      # 								operator: NotIn
-      # 								values:
-      # 								- GroupA
-      # 							- key: topology.kubernetes.io/zone
-      # 								operator: In
-      # 								values:
-      # 								- eu-east
-      # 								- eu-west
-      # 	EOF
-      # ]
-
       values = [
+        {
+          name  = "global.image.repository"
+          value = "pingidentity"
+        },
         {
           name  = "pingfederate-admin.enabled"
           value = "true"
@@ -65,33 +45,6 @@ module "charts-import" {
         # 	value = yamlencode(["eu-east", "eu-west"])
         # }
       ]
-
-
-      # values = [
-      # 	{
-      # 		name = "pingfederate-admin.enabled"
-      # 		value = "true"
-      # 	},
-      # 	{
-      # 		name = "pingfederate-engine.enabled"
-      # 		value = "true"
-      # 	},
-      # 	{
-      # 		name = "pingfederate-engine.container.replicaCount"
-      # 		value = "4"
-      # 	},
-      # ]
-
-      # list_values = [
-      # 	{
-      # 		name = "pingfederate-engine.container.affinity.nodeAffinity.requiredDuringSchedulingIgnoredDuringExecution.nodeSelectorTerms.matchExpressions[\"group\"].values"
-      # 		value = ["groupA"]
-      # 	},
-      # 	{
-      # 		name = "pingfederate-engine.container.affinity.nodeAffinity.requiredDuringSchedulingIgnoredDuringExecution.nodeSelectorTerms.matchExpressions[\"topology.kubernetes.io/zone\"].values"
-      # 		value = ["eu-east", "eu-west"]
-      # 	}
-      # ]
 
       sensitive_values = [
         # {
