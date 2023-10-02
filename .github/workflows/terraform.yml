@@ -39,8 +39,8 @@ jobs:
     - name: Terraform Plan
       run: terraform plan -input=false
 
-    - name: Helm add repo 
-      run: helm repo add chartmuseum http://localhost:8080/
+    # - name: Helm add repo 
+    #   run: helm repo add chartmuseum http://localhost:8080/
 
     - uses: actions/github-script@v6
       if: github.event_name == 'pull_request'
