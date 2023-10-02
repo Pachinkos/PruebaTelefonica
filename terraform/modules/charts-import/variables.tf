@@ -22,7 +22,7 @@ variable "charts" {
   type = list(object({
     chart_name       = string
     chart_namespace  = string
-    chart_repository = string
+    # chart_repository = string
     chart_version    = string
     values = list(object({
       name  = string

@@ -1,8 +1,4 @@
 
-output "path_module" {
-  value = path.module
-}
-
 module "charts-import" {
   source = "./modules/charts-import"
 
@@ -14,16 +10,12 @@ module "charts-import" {
 
   charts = [
     {
-      chart_name       = "ping-devops"
-      chart_namespace  = "default"
-      chart_repository = "chartmuseum"
-      chart_version    = "0.9.19"
+      chart_name      = "ping-devops"
+      chart_namespace = "default"
+      # chart_repository = "chartmuseum"
+      chart_version = "0.9.19"
 
       values = [
-        {
-          name  = "global.image.repository"
-          value = "pingidentity"
-        },
         {
           name  = "pingfederate-admin.enabled"
           value = "true"
@@ -52,7 +44,6 @@ module "charts-import" {
         # 	value = "true"
         # },
       ]
-
     }
   ]
 }
