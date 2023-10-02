@@ -13,7 +13,6 @@ resource "helm_release" "deployments" {
 
   name      = each.key
   namespace = each.value.chart_namespace
-
   repository = var.acr_server
   chart      = each.value.chart_name
   version    = each.value.chart_version   

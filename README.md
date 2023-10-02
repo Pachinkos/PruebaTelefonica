@@ -27,8 +27,8 @@ Los requisitos del reto solo serán aplicados sobre pingfederate-engine para man
 
 Por como está desarrollado el chart de ping, solo es necesario crear un fichero values custom, no necesitamos realizar modificaciones más profundas. En este caso por la combinación con los challenges 2 y 3 solo será modificado el values.yaml por simpleza.
 
-- **Isolate specific node groups:** En este supuesto, los nodos tendrán un label "group" y se evitará que los deployments se desplieguen los grupos de nodos objetivos mediante normas de afinidad de nodo. "Solo puedes desplegarte en los nodos que no pertenezcan a determinado grupo".
-- **Solo un pod del mismo tipo por nodo**: Mediante normas de anti afinidad de los nodos podemos definir que un pod no debe desplegarse sobre un nodo que ya tenga un pod con determinado string, el nombre parcial del pod. Sería interesante implementar una solución más dinámica que pudiese configurarse de forma global.
+- **Isolate specific node groups:** En este supuesto, los nodos tendrán un label "group" y se evitará que los pods se desplieguen en los grupos de nodos prohibidos mediante normas de afinidad de nodo. "Solo puedes desplegarte en los nodos que no pertenezcan a determinado grupo".
+- **Solo un pod del mismo tipo por nodo**: Mediante normas de anti afinidad de los pods podemos definir que un pod no debe desplegarse sobre un nodo que ya tenga un pod con determinado string, el nombre parcial del pod. Sería interesante implementar una solución más dinámica que pudiese configurarse de forma global.
 - **Pods are deployed across different availability zones**: En este supuesto, los nodos tendrán el label "topology.kubernetes.io/zone" con eu-east, eu-west, etc, simulando una región. Mediante normal de afinidad de nodo podremos definir las regiones en las que queramos desplegar los pods. "Solo puedes desplegarte en los nodos de determinadas regiones"
 
 **Nota:** Con esta configuración los nodos no "saltan" entre nodos según cambien las circunstancias(labels) una vez estén alojados.
